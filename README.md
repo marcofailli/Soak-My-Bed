@@ -7,7 +7,7 @@
 <h1 align="center"><strong>SOAK MY BED</strong></h1>
 
 <p align="center">
-  <strong>The definitive Klipper tool for thermal stability analysis and automated heat soaking.</strong>
+  <strong>The definitive Klipper tool for thermal stability analysis.</strong>
 </p>
 
 ---
@@ -22,12 +22,12 @@ All 3D printer beds and frames undergo significant physical deformation as they 
 * **Visual Analytics:** Generates a 3D animation (GIF) and stability curves to visualize the evolution of the deformation of your printer.
 * **Interruptible Workflow:** Stop the process at any time with `CANCEL_SOAK` and still get a complete graph of the data collected so far.
 
-### ⚙️ How it works in detail
+### ⚙️ How it works
 The plugin operates by running successive `BED_MESH_CALIBRATE` cycles. After each mesh, the script captures the Z-matrix and the current bed temperature. It then calculates the **Mean Absolute Error (MAE)**:
 1. **Variation vs First Mesh:** Tells you the total amount of deformation your bed has undergone since the beginning of the soak.
 2. **Variation vs Previous Mesh:** As this value approaches zero and the graph flattens into a horizontal line, it indicates that the thermal expansion has ceased. At this point, the frame and bed are in equilibrium, and your Z-offset will remain stable throughout the print.
 
-### 🖼️ Thermal Evolution Preview
+### 🖼️ Thermal Evolution Plot
 <p align="center">
   <img src="soak_my_bed_data.gif" width="100%" alt="Thermal Stability Animation">
 </p>
