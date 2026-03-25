@@ -41,7 +41,7 @@ The plugin operates by running successive `BED_MESH_CALIBRATE` cycles. After eac
 1. **Clone the repository** to your Klipper host (Raspberry Pi/BTT Pi):
     ```bash
     cd ~
-    git clone [https://github.com/marcofailli/Soak-My-Bed.git](https://github.com/marcofailli/Soak-My-Bed.git)
+    git clone https://github.com/marcofailli/Soak-My-Bed.git
     ```
 2. **Run the automated installer**:
    (this step might take a while since we are installing the Python plotting libraries, be patient!)
