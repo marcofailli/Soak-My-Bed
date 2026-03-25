@@ -1,5 +1,6 @@
 <p align="center">
-  <img src="https://raw.githubusercontent.com/marcofailli/Soak-My-Bed/main/banner.png?v=2" width="100%" alt="Soak My Bed Banner"></p>
+  <img src="https://raw.githubusercontent.com/marcofailli/Soak-My-Bed/main/banner.png?v=2" width="100%" alt="Soak My Bed Banner">
+</p>
 
 ---
 
@@ -12,19 +13,19 @@
 ---
 
 ### 📘 What is Soak My Bed?
-Most 3D printer beds and frames undergo significant physical deformation as they heat up, a phenomenon known as thermal drift. **Soak My Bed** is a Klipper plugin that eliminates the "guessing game" of heat soaking. Instead of waiting for a random timer, this tool measures the actual physical movement of your hardware in real-time, allowing you to start printing exactly when your machine has reached a true steady state.
+All 3D printer beds and frames undergo significant physical deformation as they heat up, a phenomenon known as thermal drift. **Soak My Bed** is a Klipper plugin that eliminates the "guessing game" of heat soaking. Instead of waiting for a random timer, this tool measures the actual physical movement of your hardware in real-time, allowing you to consciously know how long you should wait before starting a print and how the printer heating-up affects its geometry.
 
 ### ✨ Key Features
-* **Full Automation:** Handles Homing, Quad Gantry Leveling, and Bed Meshing in a continuous loop.
+* **Full Automation:** Handles Bed Meshing in a continuous loop for as long as you wish.
 * **Smart Time Logic:** Automatically calculates the optimal interval between meshes, adding a safety buffer and rounding to the nearest 5-second mark for consistent data points.
 * **Dual Stability Tracking:** Monitors variations relative to the initial "cold" state and the immediate "previous" mesh to identify equilibrium.
-* **Visual Analytics:** Generates a high-resolution 3D animation (GIF) and stability curves to visualize the "breathing" of your printer.
+* **Visual Analytics:** Generates a 3D animation (GIF) and stability curves to visualize the evolution of the deformation of your printer.
 * **Interruptible Workflow:** Stop the process at any time with `CANCEL_SOAK` and still get a complete graph of the data collected so far.
 
 ### ⚙️ How it works in detail
 The plugin operates by running successive `BED_MESH_CALIBRATE` cycles. After each mesh, the script captures the Z-matrix and the current bed temperature. It then calculates the **Mean Absolute Error (MAE)**:
-1.  **Variation vs First Mesh:** Tells you the total amount of deformation your bed has undergone since the beginning of the soak.
-2.  **Variation vs Previous Mesh:** This is the most critical metric. As this value approaches zero and the graph flattens into a horizontal line, it indicates that the thermal expansion has ceased. At this point, the frame and bed are in equilibrium, and your Z-offset will remain stable throughout the print.
+1. **Variation vs First Mesh:** Tells you the total amount of deformation your bed has undergone since the beginning of the soak.
+2. **Variation vs Previous Mesh:** As this value approaches zero and the graph flattens into a horizontal line, it indicates that the thermal expansion has ceased. At this point, the frame and bed are in equilibrium, and your Z-offset will remain stable throughout the print.
 
 ### 🖼️ Thermal Evolution Preview
 <p align="center">
@@ -37,22 +38,22 @@ The plugin operates by running successive `BED_MESH_CALIBRATE` cycles. After eac
 
 ### 🚀 Installation
 
-1.  **Clone the repository** to your Klipper host (Raspberry Pi/BTT Pi):
+1. **Clone the repository** to your Klipper host (Raspberry Pi/BTT Pi):
     ```bash
     cd ~
     git clone [https://github.com/marcofailli/Soak-My-Bed.git](https://github.com/marcofailli/Soak-My-Bed.git)
     ```
-2.  **Run the automated installer**:
+2. **Run the automated installer**:
     ```bash
     cd Soak-My-Bed
     chmod +x install.sh
     ./install.sh
     ```
-3.  **Configure Klipper**: Add the following line anywhere in your `printer.cfg`:
+3. **Configure Klipper**: Add the following line anywhere in your `printer.cfg`:
     ```ini
     [soak_my_bed]
     ```
-4.  **Restart Klipper**:
+4. **Restart Klipper**:
     ```bash
     sudo systemctl restart klipper
     ```
@@ -60,6 +61,9 @@ The plugin operates by running successive `BED_MESH_CALIBRATE` cycles. After eac
 ---
 
 ### 🛠️ Usage
+
+It is recommended to start the script with your printer cold, in equilibrium with ambient temperature, to actually evaluate its behavior when starting a fresh new print. 
+Heat soaking is a slow process that continues well after reaching your bed target temperature; a typical soak cycle lasts about 60 minutes... **Don't rush!**
 
 #### Commands
 * `SOAK_MY_BED TEMP=100 DURATION=60`
