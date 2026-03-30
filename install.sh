@@ -13,7 +13,7 @@ echo "====================================================="
 KLIPPER_DIR="${HOME}/klipper"
 KLIPPY_ENV="${HOME}/klippy-env"
 # Path to the plugin within this repository
-PLUGIN_SRC="${HOME}/soak-my-bed/soak_my_bed.py"
+PLUGIN_SRC="${HOME}/soak-my-bed/klippy/extras/soak_my_bed.py"
 # Destination path in Klipper's extras folder
 PLUGIN_DEST="${KLIPPER_DIR}/klippy/extras/soak_my_bed.py"
 
